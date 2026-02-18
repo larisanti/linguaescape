@@ -1,0 +1,15 @@
+.env
+__pycache__/
+*.py[cod]
+*$py.class
+draft.ipynb
+.ipynb_checkpoints/
+notes-linguaescape-ia.txt
+services-v1.py
+data/
+.vscode/
+.idea/
+.DS_Store
+desktop.ini
+Thumbs.db
+*.log
