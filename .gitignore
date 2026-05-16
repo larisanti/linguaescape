@@ -1,3 +1,4 @@
+archive/
 .env
 __pycache__/
 *.py[cod]
@@ -10,5 +11,3 @@ data/
 desktop.ini
 Thumbs.db
 *.log
-draft.ipynb
-notes-linguaescape-ia.txt
