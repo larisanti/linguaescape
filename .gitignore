@@ -2,10 +2,7 @@
 __pycache__/
 *.py[cod]
 *$py.class
-draft.ipynb
 .ipynb_checkpoints/
-notes-linguaescape-ia.txt
-services-v1.py
 data/
 .vscode/
 .idea/
@@ -13,3 +10,5 @@ data/
 desktop.ini
 Thumbs.db
 *.log
+draft.ipynb
+notes-linguaescape-ia.txt
