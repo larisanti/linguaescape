@@ -72,3 +72,7 @@ linguaescape-ai/
 * **Análise de Dados:** Pandas, Openpyxl
 * **Exportação:** FPDF2
 * **DevOps:** Docker, Docker Compose
+
+---
+### Acesse o App: [https://tense-memo.streamlit.app](https://tense-memo.streamlit.app)
+---
