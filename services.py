@@ -2,27 +2,13 @@ import os
 from google import genai
 from google.genai import types
 from dotenv import load_dotenv
-from schemas import ExerciseRequest, ExerciseResponse, Exercise
+from schemas import ExerciseRequest, ExerciseResponse, Exercise, AIOutput
 from pydantic import BaseModel, Field 
 from typing import List
 from utils.cefr_rag import get_cefr_context
 
 load_dotenv()
 client = genai.Client(api_key=os.getenv("GEMINI_API_KEY"))
-
-# Schema para a resposta da IA
-class AIOutput(BaseModel):
-    exercises: List[Exercise]
-    
-    # --- APLICAÇÃO DE NLP COM AGENTE SEMÂNTICO ---
-    # O modelo usa o seu entendimento de linguagem natural para:
-    # 1. Analisar os exercícios gerados.
-    # 2. Fazer cruzamento semântico com a base de dados do CEFR (cross-reference).
-    # 3. Seleciona de 3 a 5 regras que justificam pedagogicamente o material.
-
-    used_cefr_descriptors: List[str] = Field(
-        description="Strictly copy 3 to 5 CEFR descriptors from the provided list that perfectly match the skills practiced in these exercises."
-    )
 
 def generate_exercises(data: ExerciseRequest) -> ExerciseResponse:
     """

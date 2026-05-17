@@ -1,18 +1,6 @@
 from pydantic import BaseModel, Field, model_validator
 from typing import List, Optional, Literal
 
-# Schema dos exercícios
-class Exercise(BaseModel):
-    """
-    Representa um único bloco de exercício gerado pela IA.
-    Esta classe garante que a resposta da IA tenha sempre os mesmos campos.
-    """
-    exercise_type: str = Field(..., description="Type of exercise generated.")
-    instruction: str = Field(..., description="Instruction for the student.")
-    content: List[str] = Field(..., description="List of questions or sentences.")
-    options: Optional[List[List[str]]] = Field(None, description="List of options for each question.")
-    answer_key: str = Field(..., description="Correct answer.")
-
 # Schema de request
 class ExerciseRequest(BaseModel):
     """
@@ -58,6 +46,32 @@ class ExerciseRequest(BaseModel):
             raise ValueError("You selected an exercise block but left the number of questions at 0.")
         
         return self
+
+# Schema dos exercícios
+class Exercise(BaseModel):
+    """
+    Representa um único bloco de exercício gerado pela IA.
+    Esta classe garante que a resposta da IA tenha sempre os mesmos campos.
+    """
+    exercise_type: str = Field(..., description="Type of exercise generated.")
+    instruction: str = Field(..., description="Instruction for the student.")
+    content: List[str] = Field(..., description="List of questions or sentences.")
+    options: Optional[List[List[str]]] = Field(None, description="List of options for each question.")
+    answer_key: str = Field(..., description="Correct answer.")
+
+# Schema para a resposta da IA (Agente Semântico)
+class AIOutput(BaseModel):
+    exercises: List[Exercise]
+    
+    # --- APLICAÇÃO DE NLP COM AGENTE SEMÂNTICO ---
+    # O modelo usa o seu entendimento de linguagem natural para:
+    # 1. Analisar os exercícios gerados.
+    # 2. Fazer cruzamento semântico com a base de dados do CEFR (cross-reference).
+    # 3. Seleciona de 3 a 5 regras que justificam pedagogicamente o material.
+
+    used_cefr_descriptors: List[str] = Field(
+        description="Strictly copy 3 to 5 CEFR descriptors from the provided list that perfectly match the skills practiced in these exercises."
+    )
 
 # Schema de response
 class ExerciseResponse(BaseModel):
