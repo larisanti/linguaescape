@@ -74,5 +74,5 @@ linguaescape-ai/
 * **DevOps:** Docker, Docker Compose
 
 ---
-### Acesse o App: [https://linguaescape.streamlit.app/](https://linguaescape.streamlit.app/)
+### Acesse o App: [https://linguaescape.streamlit.app](https://linguaescape.streamlit.app)
 ---
